@@ -1,3 +1,4 @@
+# base image
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
 LABEL maintainer="muhgo muhgo@muhgo.me"
 
@@ -13,11 +14,17 @@ RUN apt-get update -y && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
     rm -rf \
-		/tmp/* \
-		/var/cache/apt/archives/* \
-		/var/lib/apt/lists/* \
-		/var/tmp/*
+                /tmp/* \
+                /var/cache/apt/archives/* \
+                /var/lib/apt/lists/* \
+# latest python for Flask 
+FROM python:slim
+RUN pip install Flask
+ARG NORDVPN_PORT
+EXPOSE ${NORDVPN_PORT}
 
 COPY /rootfs /
 ENV S6_CMD_WAIT_FOR_SERVICES=1
-CMD nord_login && nord_config && nord_connect && nord_migrate && nord_watch
+
+# execute start.sh instead of chained commands
+CMD ["/start.sh"] 
