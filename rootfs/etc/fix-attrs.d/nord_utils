@@ -1,7 +1,6 @@
 /usr/bin/nord_config false root:root 0755 0755
 /usr/bin/nord_connect false root:root 0755 0755
 /usr/bin/nord_login false root:root 0755 0755
-/usr/bin/nord_migrate false root:root 0755 0755
 /usr/bin/nord_watch false root:root 0755 0755
 /usr/bin/nord_reconnect.py false root:root 0755 0755
 /usr/bin/start false root:root 0755 0755
